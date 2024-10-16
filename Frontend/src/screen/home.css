@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    background: linear-gradient(90deg, #070319 0%, #310a5f 100%);
+    width: 100%;
+    height: 100%;
+}
+.box{
+
+    display: flex;
+    width: 100vw;
+}
+
+.box1{
+    width: 40vw;
+    margin: 30px 50px 0px 110px;
+    padding: 12px;
+    color: white;
+    font-family: "Sofia", sans-serif; 
+    font-size: 25px; 
+}
+
+.box1-bottom{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top : 75vh;
+    gap: 45px;
+    align-items: end;
+
+}
+.signUP{
+    background-color: chocolate;
+    text-decoration: none;
+    cursor: pointer;
+    width: 15vw;
+    height: 8vh;
+    font-size: 30px;
+    color: azure;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUP:hover{
+    box-shadow: 3px 2px rgb(224, 227, 205);
+}
+
+
+.login{
+    background-image: linear-gradient(90deg, #070319 0%, #310a5f 100%);
+    width: 15vw;
+    cursor: pointer;
+    text-decoration: none;
+    height: 8vh;
+    font-size: 30px;
+    color: azure;
+    font-family:monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login:hover{
+    box-shadow: 3px 3px rgb(172, 172, 214);
+    transition: 100ms;
+    translate:scale(0.8);
+}
+
+.box2{
+    width: 40vw;
+    margin: 30px 0px 0px 100px;
+    padding: 20px;
+    color: white;
+    font-family: "Sofia", sans-serif; 
+    font-size: 40px; 
+    display: flex;
+    flex-direction: row;    
+}
+.box img{ 
+    width: 30vw;
+    height: 80vh;
+    border-radius: 50%;
+}
+
+.container{
+    display: flex;
+    width: 100vw;
+    height: 50vh;
+    color: wheat;
+    background: linear-gradient(90deg, #070319 0%, #310a5f 100%);
+}
+
+.container-poll  {
+    background: linear-gradient(90deg, #070319 0%, #310a5f 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #070a01;
+    text-align: center;
+    padding: 10px;
+    height: 30vh;
+    width: 15vw;
+    position: relative;
+    top: 45vh;
+    font-size: large;
+}
+ 
+.poll-question {
+    font-size: 20px;
+}
+ 
+ 
+#yes{
+    font-size: 500px;
+    color: #310a5f;
+}
+#no{
+    font-size: large;
+    color: #310a5f;
+}
+
+.container{
+    background: linear-gradient(90deg, #070319 0%, #310a5f 100%);
+    width:100vw;
+    height:100vh;
+}
+
+.upcoming{
+    margin: 30px 0px 0 0;
+    padding: 20px;
+    /* border:2px solid white; */
+    width: 35vw;
+    height: 50vh;
+    color: white;
+}
+
+.recent{
+    margin: 30px 0 0 30px;
+    padding: 20px;
+    /* border:2px solid white; */
+    width: 35vw;
+    height: 50vh;
+    color: white;
+}
