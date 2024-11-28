@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import events from "../assets/data/events";
 import { AuthStore } from "../screen/store/AuthStore";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import Participants from "./Participants";
 import Success from "./Sucess";
+import { NavLink } from "react-router-dom";
 
 const Cards = () => {
-  const [eventList, setEvent] = useState([events]);
+  const [eventList, setEvent] = useState([]);
   let [msg, setMsg] = useState();
   let [participants, setParticipants] = useState();
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +25,7 @@ const Cards = () => {
     };
 
     fetchData();
-  }, []);
+  }, [load]);
 
   const { token } = useContext(AuthStore);
   let decode = null;
@@ -40,6 +41,7 @@ const Cards = () => {
       );
       if (response.data.success) {
         setMsg(response.data);
+        setTimeout(()=>setMsg(undefined), 3000)
         setTimeout(() => {
           setMsg(undefined);
         }, 3000);
@@ -49,6 +51,19 @@ const Cards = () => {
     }
   };
 
+  const deleteParticipants = async(id) => {
+    const response = await axios.delete(
+       `http://localhost:8080/event/api/deleteParticipants/${id}`)
+    if(response.data.success){
+      setLoad(true);
+      setMsg(response.data);
+      setTimeout(() => {
+        setMsg(undefined)
+      }, 2000);
+    }
+
+  }
+
   const viewParticipants = async (e, id) => {
     e.preventDefault();
     try {
@@ -57,7 +72,6 @@ const Cards = () => {
         { _id: id },
         { headers: { "Content-Type": "application/json" } }
       );
-      // console.log(response.data.participants);
       if (response.data.success) {
         setParticipants(response.data.participants);
       }
@@ -68,7 +82,7 @@ const Cards = () => {
 
   return (
     <div>
-      <div className="flex ml-5 flex-wrap w-screen bg-gradient-to-r from-[#090617] to-[#a09fbd]">
+      <div className="flex flex-wrap w-screen bg-black">
         {msg && <Success data={msg} setData={setMsg} />}
         {eventList && eventList.map((event, idx) => (
           <div key={idx} className="m-1 p-5 w-[30vw] shadow-md from-blue-50 border-2 rounded-md">
@@ -94,18 +108,24 @@ const Cards = () => {
                   </button>     
               )}
               {token && decode.role === "organizer" && (
+                <div>
                   <button onClick={(e) => viewParticipants(e, event._id)}  
-                    className="ml-10 border bg-orange-500 h-20 w-32 text-xl hover:brightness-50">
+                    className="ml-10 border bg-orange-500 h-20 w-32 text-xl hover:brightness-50 mb-3">
                     View Participants
                   </button>
+                  <button onClick={() => deleteParticipants(event._id)}  
+                    className="ml-10 border bg-orange-500 h-20 w-32 text-xl hover:brightness-50">
+                    Delete
+                  </button>
+                </div>
               )}
             </div>
           </div>
         ))}
       </div>
         <div>
-          {participants && <Participants data={participants} setData={setParticipants} />}
         </div>
+        {participants && <Participants data={participants} setData={setParticipants} />}
     </div>
   );
 };

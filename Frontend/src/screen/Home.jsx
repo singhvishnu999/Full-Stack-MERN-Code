@@ -6,15 +6,14 @@ import Navbar2 from "../components/Navbar2";
 import images from "../assets/images2.jpeg";
 import Cards from "../components/Cards";
 import { AuthStore } from "./store/AuthStore";
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 
 export default function () {
   const { token, handleLogout } = useContext(AuthStore);
-  let decode=null;
-  if(token){
-    decode = jwtDecode(token)
+  let decode = null;
+  if (token) {
+    decode = jwtDecode(token);
   }
-
 
   return (
     <>
@@ -45,11 +44,11 @@ export default function () {
                   <button className="signUP" onClick={() => handleLogout()}>
                     Logout
                   </button>
-                  {decode.role === "organizer" &&
-                  <NavLink to="/event" className="login ">
-                    Add Event
-                  </NavLink>
-                 }
+                  {decode.role === "organizer" && (
+                    <NavLink to="/event" className="login ">
+                      Add Event
+                    </NavLink>
+                  )}
                 </div>
               )}
             </div>
@@ -61,13 +60,11 @@ export default function () {
             </h1>
             <input type="radio" id="yes" name="poll" value="0" />
             <label htmlFor="yes" className="text-white ml-3 text-xl">
-            
               yes
             </label>
             <br />
             <input type="radio" id="no" name="poll" value="0" />
             <label htmlFor="no" className="text-white ml-3 text-xl">
-             
               no
             </label>
           </div>

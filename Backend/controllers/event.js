@@ -29,7 +29,13 @@ module.exports.addParticipate = async (req, res) => {
 }
 
 module.exports.viewParticipants = async(req, res) => {
-    console.log(req.cookies)
+    // console.log(req.cookies)
     const event = await Events.findById(req.body._id).populate('participants');
     res.status(200).json({success:true, participants : event.participants})
+}
+
+module.exports.deleteParticipants = async(req, res) => {
+    const {id} = req.params;
+    const event = await Events.findByIdAndDelete(id)
+    res.status(200).json({success:true, message : 'Deleted Successfully'})
 }

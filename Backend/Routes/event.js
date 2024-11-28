@@ -1,5 +1,5 @@
 const express = require('express');
-const { addEvent, addParticipate, showEvent, viewParticipants } = require('../controllers/event');
+const { addEvent, addParticipate, showEvent, viewParticipants, deleteParticipants } = require('../controllers/event');
 const router = express.Router();
 const multer = require('multer');
 
@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 
 router.route('/api/showEvent').get(showEvent) 
 router.route('/api/viewParticipants').post(viewParticipants)
+router.route('/api/deleteParticipants/:id').delete(deleteParticipants)
 
 router.route('/api/addEvent').post(upload.single('photo') ,addEvent)
 

@@ -40,7 +40,6 @@ app.get('/api/checkToken', (req, res)=>{
     if(token)
         res.status(200).json({success:true, token:token});
     else res.status(200).json({success:false, token:undefined});
-})
-    
+})   
 
 app.listen(8080,()=> console.log("server started on 8080"));

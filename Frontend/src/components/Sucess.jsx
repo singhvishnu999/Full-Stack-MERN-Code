@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-const Success = ({data}) => {
-    
+const Success = ({data}) => { 
   return (
     <>
     <div className={`flex justify-center items-center w-screen h-[10vh] text-white
