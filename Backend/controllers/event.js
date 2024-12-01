@@ -7,12 +7,10 @@ module.exports.showEvent = async (req, res) => {
     res.status(200).json({event})
 
     }catch(err){
-        // console.log(err);
         res.status(200).json({err})
     }
 }
 module.exports.addEvent = async (req, res) => {
-    // console.log(req.file) 
     const event = new Events(req.body);
     event.photo = req.file.filename
     await event.save();
@@ -29,7 +27,6 @@ module.exports.addParticipate = async (req, res) => {
 }
 
 module.exports.viewParticipants = async(req, res) => {
-    // console.log(req.cookies)
     const event = await Events.findById(req.body._id).populate('participants');
     res.status(200).json({success:true, participants : event.participants})
 }
